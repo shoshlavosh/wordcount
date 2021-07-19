@@ -10,10 +10,14 @@ def word_count(file):
     
     for line in words_file: 
         #loops over each line in the file
-        line = line.rstrip() 
+        line = line.rstrip(" ") 
         #removes blank spaces in lines, saves to variable "line"
+        line = line.rstrip("?") 
+        line = line.rstrip(",")
+        line = line.rstrip(".")
 
-        words = line.split(' ')
+
+        words = line.split(" ")
         #adds a " " between each word and saves to variable "words"
 
         # print(words)
@@ -22,7 +26,13 @@ def word_count(file):
         for word in words:
             word_count_dict[word] = word_count_dict.get(word, 0) + 1
 
+        for key, value in word_count_dict.items():
+            print(f"key = {key}, value = {value}")
+
     print(word_count_dict)
 
+    #close the file
+    words_file.close()
+
 word_count("test.txt")
-word_count("twain.txt")
+# word_count("twain.txt")
